@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 
 
 const app = express();
+//header를 직접 작성할 수도 있지만 cors 라이브러리를 사용하는 것이 가장 간편하다.
+//하지만 외부에서 접근가능한 보안 이슈가 있기 때문에 option을 설정해서 접근 가능한 host를 제한하는 것이 맞다. 
 app.use(cors())
 
 app.use(bodyParser.urlencoded({ extended: false }))
