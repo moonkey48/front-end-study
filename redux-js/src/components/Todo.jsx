@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const TodoItem = React.memo(function TodoItem({todo,onToggle}){
-    return <li>{todo.text}</li>
+    return <li style={{textDecoration: todo.done?'line-through':'none',listStyle:'none',cursor:'pointer',fontSize:'30px'}} onClick={()=>onToggle(todo.id)}>{todo.text}</li>
 })
 
 const TodoList = React.memo(function TodoList({todos,onToggle}){
