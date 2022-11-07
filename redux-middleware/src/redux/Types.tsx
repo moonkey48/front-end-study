@@ -5,10 +5,7 @@ export type Image = {
 }
 export interface boardItem {
     id:number;
-    type:string;
     name: string;
-    image:string;
-    reviews:Array<Object>;
 }
 export type BOARDLIST = {
     boardList:Array<boardItem>;

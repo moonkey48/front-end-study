@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTodo, toggleTodo } from '../reducers/todos';
+import { addTodo, toggleTodo } from '../modules/todos';
 import Todo from './Todo';
 
 const TodoContainer = () => {
