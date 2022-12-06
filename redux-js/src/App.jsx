@@ -1,5 +1,3 @@
-import logo from './logo.svg';
-import './App.css';
 import CounterContainer from './components/CounterContainer';
 import TodoContainer from './components/TodoContainer';
 import PostListContainer from './components/PostListContainer';
@@ -10,7 +8,7 @@ import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <CounterContainer/>
       <Routes>
         <Route path="/" element={<PostListPage/>} exact={true} />

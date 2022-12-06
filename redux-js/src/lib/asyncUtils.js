@@ -1,4 +1,5 @@
 import { call, put } from 'redux-saga/effects';
+import produce from 'immer';
 
 // Promise에 기반한 Thunk를 만들어주는 함수입니다.
 export const createPromiseThunk = (type, promiseCreator) => {
@@ -104,20 +105,17 @@ export const createPromiseThunk = (type, promiseCreator) => {
     return (state, action) => {
       switch (action.type) {
         case type:
-          return {
-            ...state,
-            [key]: reducerUtils.loading(keepData?state[key].data:null)
-          };
+          return produce(state, draft=>{
+            draft[key] = reducerUtils.loading(keepData?state[key].data:null);
+          })
         case SUCCESS:
-          return {
-            ...state,
-            [key]: reducerUtils.success(action.payload)
-          };
+          return produce(state,draft=>{
+            draft[key] = reducerUtils.success(action.payload);
+          })
         case ERROR:
-          return {
-            ...state,
-            [key]: reducerUtils.error(action.payload)
-          };
+          return produce(state,draft=>{
+            draft[key] = reducerUtils.error(action.payload)
+          })
         default:
           return state;
       }
@@ -134,31 +132,18 @@ export const createPromiseThunk = (type, promiseCreator) => {
       const id = action.meta
       switch(action.type){
         case type:
-          return {
-            ...state,
-            [key]:{
-              ...state[key],
-              [id]:reducerUtils.loading(
-                keepData ? state[key][id] && state[key][id].data : null
-              )
-            }
-          }
+          return produce(state, draft=>{
+            draft[key][id] = reducerUtils.loading(keepData ? state[key][id] && state[key][id].data:null);
+          })
         case SUCCESS:
-          return {
-            ...state,
-            [key]:{
-              ...state[key],
-              [id]:reducerUtils.success(action.payload)
-            }
-          }
+          return produce(state, draft=>{
+            draft[key][id] = reducerUtils.success(action.payload);
+          })
+          
         case ERROR:
-          return {
-            ...state, 
-            [key]:{
-              ...state[key],
-              [id]:reducerUtils.error(action.payload)
-            }
-          }
+          return produce(state, draft=>{
+            draft[key][id] = reducerUtils.error(action.payload);
+          })
         default:
           return state;
       }
