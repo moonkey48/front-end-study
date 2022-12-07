@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Products from './components/Products';
+import { ReactQueryDevtools } from 'react-query/types/devtools';
+import ProductsItem from './components/ProductsItem';
 
 const queryClient = new QueryClient();
 
@@ -13,7 +17,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient} >
-      <App />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<App/>}/>
+          <Route path='/products' element={<Products/>} />
+          <Route path='/products/:id' element={<ProductsItem/>} />
+        </Routes>
+      </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>
 );

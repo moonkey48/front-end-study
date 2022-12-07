@@ -6,12 +6,14 @@ import { User } from '../types/user';
 const UsersQuery = () => {
     //5초마다 refetch해서 data를 가져온다. 
     const [users, setUsers] = useState<User[]>([]);
-    const {isLoading, data} = useQuery(['users'], fetchUsers, {
-        refetchInterval:500000,
+    const {isLoading, data, error} = useQuery(['users'], fetchUsers, {
+        refetchInterval:50000,
+        staleTime:1000,
         onSuccess:(data)=>{
             setUsers(data);
         }
     });
+    
 
 
     return (
