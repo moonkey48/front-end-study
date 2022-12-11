@@ -13,8 +13,6 @@ const UsersQuery = () => {
             setUsers(data);
         }
     });
-    
-
 
     return (
     <>

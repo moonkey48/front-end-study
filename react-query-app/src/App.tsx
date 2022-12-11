@@ -1,19 +1,13 @@
-import { ReactQueryDevtools } from 'react-query/devtools';
 import './App.css';
-import MutationComp from './test/Mutation';
-import PostMutation from './test/postMutaion';
-import SuspenseProducts from './components/SuspenseProducts';
-import UsersQuery from './components/usersQuery';
-
 
 
 function App() {
   return (
     <div className="App">
-      {/* <UsersQuery/> */}
-      {/* <MutationComp/> */}
-      {/* <PostMutation/> */}
-      <SuspenseProducts/>
+      <h1>main page</h1>
+      <h3>/productsuspense</h3>
+      <h3>/productnosuspense</h3>
+      <h3>/products/:id</h3>
     </div>
   );
 }

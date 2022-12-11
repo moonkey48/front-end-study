@@ -8,6 +8,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Products from './components/Products';
 import { ReactQueryDevtools } from 'react-query/types/devtools';
 import ProductsItem from './components/ProductsItem';
+import ProductSuspensePage from './pages/ProductSuspensePage';
+import ProductNoSuspensePage from './pages/ProductNoSuspensePage';
+import SuspenseQuery from './test/suspenseQuery';
 
 const queryClient = new QueryClient({
   defaultOptions:{
@@ -28,8 +31,10 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<App/>}/>
-          <Route path='/products' element={<Products/>} />
+          <Route path='/products/suspense' element={<ProductSuspensePage/>} />
+          <Route path='/products/nosuspense' element={<ProductNoSuspensePage/>} />
           <Route path='/products/:id' element={<ProductsItem/>} />
+          <Route path='/products/test' element={<SuspenseQuery/>} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

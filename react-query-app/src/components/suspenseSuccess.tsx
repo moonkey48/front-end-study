@@ -1,10 +1,8 @@
 import React from 'react';
-import { ReactQueryDevtools } from 'react-query/devtools';
+import { useQuery } from 'react-query';
+import { fetchProduct } from '../api/fetchProducts';
 import { Product } from '../types/product';
 
-type SuspenseSuccessProps = {
-    data:Product[]
-}
 const imgStyle = {
     width:'200px',
     height:'auto'
@@ -12,12 +10,16 @@ const imgStyle = {
 const listStyle = {
     marginBottom: '100px'
 }
-const SuspenseSuccess = ({data}:SuspenseSuccessProps) => {
-    console.log(data)
+const SuspenseSuccess = () => {
+    const {data,isLoading,isError} = useQuery('products',fetchProduct, {
+        suspense:true,
+        cacheTime:2000,
+        staleTime: 0,
+    })
     return (
         <>
         <ul>
-        {data.map(item=>{
+        {data.map((item:Product)=>{
             return <li style={listStyle} key={item.id}>
                 <h1>{item.title}</h1>
                 <img style={imgStyle} src={item.img} alt="" />
@@ -25,7 +27,6 @@ const SuspenseSuccess = ({data}:SuspenseSuccessProps) => {
             </li>
         })}
         </ul>
-        <ReactQueryDevtools/>
         </>
     )
 }

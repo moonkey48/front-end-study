@@ -1,30 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { User } from '../types/user';
 
 const UsersNoQuery = () => {
-    const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [users, setUsers] = useState<User[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<boolean>(false);
 
     useEffect(()=>{
         (async ()=> {
-            const response = await fetch('https://jsonplaceholder.typicode.com/users').then(res=>res.json());
-            setUsers(response);
-            console.log(response);
-            setLoading(false);
+            try{
+                const response = await fetch('https://jsonplaceholder.typicode.com/users').then(res=>res.json())
+                setUsers(response);
+            }catch(e){
+                console.log(e);
+                setError(true);
+            }finally{
+                setLoading(false);
+            }
         })();
     },[]);
 
     return (
         <>
-        {loading ?
-        <h1>loading...</h1>
-        :
-        <ul>{
-            users.map((user,index)=>{
-                return <li key={index}>
-                    {index}
-                </li>
-            })
-        }</ul>
+        {
+            loading ?
+            <h1>loading...</h1>
+            :
+            users &&
+            <ul>{
+                users.map((user,index)=>{
+                    return <li key={index}> user... </li>
+                })
+            }</ul>
         }
         </>
     )
