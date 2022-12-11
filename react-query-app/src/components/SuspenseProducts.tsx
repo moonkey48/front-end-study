@@ -11,12 +11,9 @@ const SuspenseProducts = () => {
         cacheTime:2000,
         staleTime: 0,
     })
-    console.log(isLoading);
     return (
     <>
-        {isLoading && <Loading/>}
-        {isError && <Error/>}
-        {data && <SuspenseSuccess data={data} />}
+        <SuspenseSuccess data={data}/>
     </>
     )
 }

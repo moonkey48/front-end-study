@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import LazyLoad from 'react-lazyload';
 import { useQuery } from 'react-query';
 import { fetchProduct } from '../api/fetchProducts';
 import { Product } from '../types/product';

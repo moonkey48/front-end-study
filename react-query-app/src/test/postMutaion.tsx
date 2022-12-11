@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMutation } from 'react-query';
 import axios from 'axios';
-import Loading from './Loading';
+import Loading from '../components/Loading';
 
 type PostData = {
     title:string,
