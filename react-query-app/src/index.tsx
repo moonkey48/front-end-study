@@ -9,7 +9,15 @@ import Products from './components/Products';
 import { ReactQueryDevtools } from 'react-query/types/devtools';
 import ProductsItem from './components/ProductsItem';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions:{
+		queries: {
+			refetchOnMount: false,
+			refetchOnReconnect: false,
+			refetchOnWindowFocus: false,
+		}
+	}
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
